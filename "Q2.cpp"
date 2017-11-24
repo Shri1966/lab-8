@@ -1,0 +1,93 @@
+#include<iostream>
+using namespace std;
+
+class Node
+{
+    public:
+    int data;
+    Node *next;
+}*top=NULL,*x;
+ 
+Node* newnode(int a)
+{
+    x=new Node;
+    x->data=a;
+    x->next=NULL;
+    return(x);
+}
+ 
+void push(Node *y)
+{
+    if(top==NULL)
+        top=y;
+    else
+    {
+        y->next=top;
+        top=y;
+    }
+}
+ 
+void pop(){
+    if(top==NULL){
+        cout<<"Stack is empty!!";
+    }
+    else{
+        cout<<"Deleted element is "<<top->data;
+        x=top;
+        top=top->next;
+        delete(x);
+    }
+}
+ 
+void showstack()
+{
+    Node *z;
+    z=top;
+ 
+    if(top==NULL){
+        cout<<"Stack is empty!!";
+    }
+    else{
+        while(z!=NULL)
+        {
+            cout<<z->data<<" ";
+            z=z->next;
+        }        
+    }
+}
+ 
+int main()
+{
+    int ch,c;
+    char cha;
+    Node *nptr;
+    cout<<"\n \nPROGRAM TO USE THE CONCEPT OF STACK";
+    do 
+    {
+        cout<<"\n\n1.Push\n2.Pop\n3.Display\n4.Exit";
+        cout<<"\nEnter your choice(1-4):";
+        cin>>ch;
+        
+        switch(ch){
+            case 1: cout<<"\nEnter data:";
+                    cin>>c;
+                    nptr=newnode(c);
+                    push(nptr);
+                    break;
+            
+            case 2: pop();
+                    break;
+                    
+            case 3: showstack();
+                    break;
+            
+            case 4: exit(0);
+            
+            default: cout<<"\nWrong choice!!";
+        }
+    cout<<"\n \nDo you want to continue?(y/n)";
+    cin>>cha;
+    }
+    while(cha=='y' || cha=='Y');
+    return 0;
+}
